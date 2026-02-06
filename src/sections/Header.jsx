@@ -24,10 +24,31 @@ const Header = () => {
   ];
 
   const scrollToSection = (e, href) => {
-    e.preventDefault();
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    // Only prevent default for valid in-page anchors
+    try {
+      if (!href || href === '#' || href === '#!') {
+        // nothing to scroll to; just close mobile menu when applicable
+        e.preventDefault();
+        setIsMobileMenuOpen(false);
+        return;
+      }
+
+      // Only handle hash links (e.g. #section)
+      if (href.startsWith('#')) {
+        e.preventDefault();
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+        setIsMobileMenuOpen(false);
+        return;
+      }
+
+      // For normal links (external or full paths), allow default navigation
+    } catch (err) {
+      // Protect against invalid selectors and other runtime errors
+      // Close mobile menu to avoid leaving it open in a broken state
+      console.warn('scrollToSection failed for', href, err);
       setIsMobileMenuOpen(false);
     }
   };
