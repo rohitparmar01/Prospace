@@ -36,7 +36,7 @@ const Header = () => {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${
         isScrolled 
           ? 'bg-white shadow-md py-3' 
           : 'bg-white py-4'
@@ -82,7 +82,8 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors relative z-[10000] touch-manipulation"
+            aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
               <HiX className="w-6 h-6 text-gray-700" />
