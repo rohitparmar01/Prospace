@@ -165,20 +165,20 @@ const Footer = () => {
           viewport={{ once: true }}
           className="mt-12 pt-12 border-t border-gray-800"
         >
-          <div className="max-w-md">
+          <div className="max-w-md w-full">
             <h3 className="text-white font-heading font-bold text-lg mb-4">
               Get Design Inspiration
             </h3>
             <p className="text-gray-400 mb-4">
               Subscribe to our newsletter for latest designs, trends, and exclusive offers
             </p>
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-white placeholder-gray-500"
+                className="w-full flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-white placeholder-gray-500"
               />
-              <button className="px-6 py-3 bg-gradient-to-r from-primary-500 to-secondary-500 text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-300">
+              <button className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-primary-500 to-secondary-500 text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-300">
                 Subscribe
               </button>
             </div>

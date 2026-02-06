@@ -32,11 +32,17 @@ const Header = () => {
     }
   };
 
+  const toggleMobileMenu = (e) => {
+    // Use pointer events to handle both touch and mouse consistently
+    if (e) e.preventDefault();
+    setIsMobileMenuOpen((v) => !v);
+  };
+
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-[9999] pointer-events-auto transition-all duration-300 ${
         isScrolled 
           ? 'bg-white shadow-md py-3' 
           : 'bg-white py-4'
@@ -81,9 +87,13 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            onPointerDown={toggleMobileMenu}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') toggleMobileMenu(e); }}
             className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors relative z-[10000] touch-manipulation"
             aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
+            type="button"
           >
             {isMobileMenuOpen ? (
               <HiX className="w-6 h-6 text-gray-700" />
@@ -98,10 +108,11 @@ const Header = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
+            id="mobile-menu"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-white border-t border-gray-200 overflow-hidden"
+            className="lg:hidden bg-white border-t border-gray-200 overflow-hidden relative z-[9998]"
           >
             <div className="container mx-auto px-4 py-4 space-y-3">
               {navLinks.map((link) => (
