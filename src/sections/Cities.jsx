@@ -19,7 +19,7 @@ const Cities = () => {
     { name: 'Indore', projects: '3,000+' },
     { name: 'Coimbatore', projects: '2,800+' },
     { name: 'Nagpur', projects: '2,500+' },
-    { name: 'Visakhapatnam', projects: '2,200+' },
+    { name: 'Bhopal', projects: '2,200+' },
   ];
 
   return (
